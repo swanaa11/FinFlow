@@ -73,6 +73,21 @@ def datagen(
     logger.info("datagen complete: %s", result)
 
 
+@app.command("export-demo")
+def export_demo(
+    site_dir: Path = typer.Option(
+        Path("site"), "--site-dir", help="Output directory for the static demo site."
+    ),
+) -> None:
+    """Export the public demo site from the SYNTHETIC sample dataset (Vercel-ready)."""
+    from finflow.demo.export import export_demo_site
+
+    settings = get_settings()
+    configure_logging(settings.log_level)
+    out = export_demo_site(site_dir)
+    typer.echo(f"Demo site written: {out} (synthetic data only — safe to publish)")
+
+
 def main() -> None:
     """Console-script entry point."""
     app()

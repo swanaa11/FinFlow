@@ -61,7 +61,7 @@ Homepage = "https://github.com/YOUR_USERNAME/finflow"
 where = ["src"]
 
 [tool.setuptools.package-data]
-finflow = ["py.typed"]
+finflow = ["py.typed", "demo/template.html"]
 
 [tool.ruff]
 line-length = 100

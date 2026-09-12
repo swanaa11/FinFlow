@@ -1,21 +1,24 @@
 # ============================================================================
 # FinFlow monthly budgets (rupees per calendar month) — category -> amount.
 # Consumed by the budget-tracking job (Milestone 10) and dashboard.
-# Categories without an entry are simply not budget-tracked.
+#
+# Calibrated against the synthetic twin's observed monthly averages so the
+# demo shows a realistic mix: most categories near their limits, Fuel slightly
+# over, Entertainment deliberately breaching (demonstrates the alert state).
 # ============================================================================
 
 version: 1
 
 budgets:
-  Housing: 24000
-  Food & Dining: 8000
-  Groceries: 9000
-  Transport: 3000
-  Fuel: 4000
-  Shopping: 5000
-  Entertainment: 2000
-  Subscriptions: 1500
-  Utilities: 3500
-  Health: 2000
-  Personal Care: 1000
-  Education: 2000
+  Housing: 25000
+  Food & Dining: 15000
+  Groceries: 13000
+  Transport: 6000
+  Fuel: 5300
+  Shopping: 14000
+  Entertainment: 3500
+  Subscriptions: 1000
+  Utilities: 4000
+  Health: 3500
+  Personal Care: 1800
+  Education: 500

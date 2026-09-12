@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinFlow — Personal Finance Intelligence (Demo)</title>
+<meta name="description" content="FinFlow demo dashboard — synthetically generated personal finance metrics from an automated data pipeline.">
+<style>
+  :root{
+    --bg:#0b1220; --panel:#121b2e; --panel2:#0f1729; --line:#22304d;
+    --text:#e6edf7; --muted:#8fa3bf; --accent:#38bdf8;
+    --green:#34d399; --red:#fb7185; --amber:#fbbf24;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-bottom:60px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0e1729 0%,var(--bg) 100%)}
+  .brand{display:flex;align-items:center;gap:12px;padding:22px 0 14px}
+  .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#0ea5e9,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;color:#04121f;font-size:19px}
+  h1{font-size:21px;letter-spacing:.2px}
+  .tagline{color:var(--muted);font-size:13px}
+  .badge{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--amber);border:1px solid rgba(251,191,36,.4);background:rgba(251,191,36,.08);padding:5px 10px;border-radius:99px;white-space:nowrap}
+  .disclaimer{font-size:12.5px;color:var(--muted);padding:8px 0 14px}
+  .disclaimer b{color:var(--amber)}
+  .grid{display:grid;gap:14px}
+  .kpis{grid-template-columns:repeat(4,1fr);margin:20px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .kpi .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+  .kpi .value{font-size:24px;font-weight:750;margin-top:6px;font-variant-numeric:tabular-nums}
+  .kpi .sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .two{grid-template-columns:1.5fr 1fr;margin-bottom:14px}
+  .three{grid-template-columns:1fr 1fr 1fr;margin-bottom:14px}
+  h2{font-size:14px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  td,th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .bar-row{margin:10px 0}
+  .bar-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+  .bar-top .amt{color:var(--muted);font-variant-numeric:tabular-nums}
+  .bar{height:8px;background:#1a2740;border-radius:99px;overflow:hidden}
+  .bar>i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+  .bar.g>i{background:var(--green)} .bar.r>i{background:var(--red)} .bar.a>i{background:var(--amber)}
+  .acct{display:flex;flex-direction:column;gap:6px}
+  .acct .name{font-weight:650;font-size:14px}
+  .acct .row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+  .acct .row b{color:var(--text);font-variant-numeric:tabular-nums;font-weight:600}
+  ol.rank{list-style:none;counter-reset:rk}
+  ol.rank li{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  ol.rank li::before{counter-increment:rk;content:counter(rk);width:22px;height:22px;border-radius:6px;background:#1a2740;color:var(--muted);font-size:11.5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  ol.rank .amt{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+  footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  a{color:var(--accent);text-decoration:none}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">₹</div>
+      <div>
+        <h1>FinFlow</h1>
+        <div class="tagline">Automated personal finance intelligence — demo deployment</div>
+      </div>
+      <div class="badge">SYNTHETIC DEMO DATA</div>
+    </div>
+    <div class="disclaimer">
+      Every figure on this page was produced by the FinFlow synthetic data generator — <b>no real financial data exists in this deployment</b>.
+      The real pipeline runs privately on the owner's machine: statements are ingested, validated, deduplicated, categorized (dbt + DuckDB), and only aggregates like these are ever rendered.
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="grid kpis" id="kpis"></section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>Monthly income vs expenses</h2>
+      <div id="trend"></div>
+    </div>
+    <div class="card">
+      <h2>Where the money goes</h2>
+      <div id="categories"></div>
+    </div>
+  </section>
+
+  <section class="grid two" style="grid-template-columns:1fr 1.5fr">
+    <div class="card">
+      <h2>Budget utilization — <span id="budget-month" style="color:var(--text)"></span></h2>
+      <div id="budgets"></div>
+    </div>
+    <div class="card">
+      <h2>Accounts</h2>
+      <div class="grid" id="accounts" style="grid-template-columns:1fr 1fr"></div>
+    </div>
+  </section>
+
+  <section class="grid two" style="grid-template-columns:1fr 1.5fr">
+    <div class="card">
+      <h2>Top merchants</h2>
+      <ol class="rank" id="merchants"></ol>
+    </div>
+    <div class="card">
+      <h2>Largest transactions</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Description</th><th class="num">Amount</th></tr></thead>
+        <tbody id="largest"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div>Built with <a href="https://github.com/swanaa11/Wallet">FinFlow</a> — Python · DuckDB · dbt · Airflow · Streamlit. Static demo exported by <code>finflow export-demo</code>.</div>
+    <div>Hosted on Vercel (free Hobby plan) · <span id="gen-date"></span></div>
+  </footer>
+</main>
+
+<script>
+const D = __FINFLOW_DATA__;
+
+const inr = (n, dec = 0) =>
+  (n < 0 ? "-₹" : "₹") + Math.abs(n).toLocaleString("en-IN", {maximumFractionDigits: dec, minimumFractionDigits: dec});
+const compact = (n) =>
+  n >= 1e7 ? (n / 1e7).toFixed(1) + "Cr" : n >= 1e5 ? (n / 1e5).toFixed(1) + "L" : n >= 1e3 ? (n / 1e3).toFixed(0) + "K" : String(Math.round(n));
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const mLabel = (m) => MONTHS[parseInt(m.slice(5, 7), 10) - 1] + " " + m.slice(2, 4);
+
+// KPI cards ---------------------------------------------------------------
+const k = D.kpis;
+document.getElementById("kpis").innerHTML = [
+  ["Total income", inr(k.income), "all sources"],
+  ["Total expenses", inr(k.expenses), "transfers excluded"],
+  ["Net savings", inr(k.net), k.savings_rate + "% savings rate"],
+  ["Transactions", k.transactions.toLocaleString("en-IN"), D.meta.period.start + " → " + D.meta.period.end],
+].map(([l, v, s]) => `<div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${s}</div></div>`).join("");
+
+// Monthly trend (SVG grouped bars) ----------------------------------------
+(function () {
+  const W = 760, H = 240, PAD_B = 26, PAD_T = 14, MAXY = H - PAD_B;
+  const rows = D.monthly;
+  const max = Math.max(1, ...rows.map((r) => Math.max(r.income, r.expense)));
+  const gw = W / rows.length, bw = Math.min(20, gw * 0.28);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%">`;
+  for (let g = 0; g <= 4; g++) {
+    const y = MAXY - (MAXY - PAD_T) * (g / 4);
+    svg += `<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="#1c2a45" stroke-width="1"/>`;
+    svg += `<text x="4" y="${y - 4}" fill="#5b7089" font-size="10">${compact((max * g) / 4)}</text>`;
+  }
+  rows.forEach((r, i) => {
+    const x0 = i * gw + gw / 2;
+    const hi = Math.max(1, (r.income / max) * (MAXY - PAD_T));
+    const he = Math.max(1, (r.expense / max) * (MAXY - PAD_T));
+    svg += `<rect x="${(x0 - bw - 2).toFixed(1)}" y="${(MAXY - hi).toFixed(1)}" width="${bw.toFixed(1)}" height="${hi.toFixed(1)}" rx="3" fill="#34d399"/>`;
+    svg += `<rect x="${(x0 + 2).toFixed(1)}" y="${(MAXY - he).toFixed(1)}" width="${bw.toFixed(1)}" height="${he.toFixed(1)}" rx="3" fill="#fb7185"/>`;
+    svg += `<text x="${x0.toFixed(1)}" y="${H - 8}" fill="#8fa3bf" font-size="10.5" text-anchor="middle">${mLabel(r.month)}</text>`;
+  });
+  svg += `<rect x="0" y="-999" width="0" height="0"/>`;
+  svg += `<text x="${W - 2}" y="12" fill="#34d399" font-size="11" text-anchor="end">income</text>`;
+  svg += `<text x="${W - 58}" y="12" fill="#fb7185" font-size="11" text-anchor="end">expenses</text>`;
+  document.getElementById("trend").innerHTML = svg + "</svg>";
+})();
+
+// Category breakdown -------------------------------------------------------
+(function () {
+  const max = Math.max(...D.categories.map((c) => c.total), 1);
+  document.getElementById("categories").innerHTML = D.categories.slice(0, 9).map((c) => `
+    <div class="bar-row">
+      <div class="bar-top"><span>${c.name}</span><span class="amt">${inr(c.total)} · ${c.share}%</span></div>
+      <div class="bar"><i style="width:${(100 * c.total / max).toFixed(1)}%"></i></div>
+    </div>`).join("");
+})();
+
+// Budgets ------------------------------------------------------------------
+(function () {
+  document.getElementById("budget-month").textContent = mLabel(D.budgets.month);
+  document.getElementById("budgets").innerHTML = D.budgets.rows.map((b) => {
+    const cls = b.pct >= 100 ? "r" : b.pct >= 75 ? "a" : "g";
+    const warn = b.pct >= 100 ? " — over budget!" : b.pct >= 75 ? " — approaching limit" : "";
+    return `
+    <div class="bar-row">
+      <div class="bar-top"><span>${b.category}<span style="color:var(--muted)">${warn}</span></span>
+      <span class="amt">${inr(b.spend)} / ${inr(b.budget)} · ${b.pct}%</span></div>
+      <div class="bar ${cls}"><i style="width:${Math.min(100, b.pct).toFixed(1)}%"></i></div>
+    </div>`;
+  }).join("");
+})();
+
+// Accounts -----------------------------------------------------------------
+(function () {
+  const names = {hdfc_savings: "HDFC Savings", icici_savings: "ICICI Savings", paytm_wallet: "Paytm Wallet (UPI)", axis_credit_card: "Axis Credit Card"};
+  document.getElementById("accounts").innerHTML = D.accounts.map((a) => `
+    <div class="card acct" style="background:var(--panel2)">
+      <div class="name">${names[a.id] || a.id}</div>
+      <div class="row"><span>in</span><b style="color:var(--green)">+${inr(a.in)}</b></div>
+      <div class="row"><span>out</span><b style="color:var(--red)">-${inr(a.out)}</b></div>
+      <div class="row"><span>transactions</span><b>${a.count}</b></div>
+    </div>`).join("");
+})();
+
+// Merchants + largest --------------------------------------------------------
+document.getElementById("merchants").innerHTML = D.top_merchants
+  .map((m) => `<li><span>${m.name}</span><span class="amt">${inr(m.total)} · ${m.share}%</span></li>`).join("");
+document.getElementById("largest").innerHTML = D.largest
+  .map((t) => `<tr><td style="white-space:nowrap">${t.date}</td><td>${t.label}</td><td class="num" style="color:var(--red)">${inr(t.amount)}</td></tr>`).join("");
+document.getElementById("gen-date").textContent = "data generated " + D.meta.generated_at;
+</script>
+</body>
+</html>

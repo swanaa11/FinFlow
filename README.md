@@ -4,6 +4,13 @@
 > statement exports into clean, categorized, deduplicated financial insights —
 > with a dashboard, daily Telegram summaries, anomaly detection and budget alerts.
 
+## 🌐 Live demo
+
+A static demo dashboard (built **only** from the synthetic sample corpus) is
+deployed on Vercel's free Hobby plan — deployment guide:
+[`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). Regenerate it locally with
+`finflow export-demo` after refreshing the data.
+
 **Status: under active construction.** This README is a stub during Phase-5
 implementation; the full product README (architecture diagram, screenshots,
 design decisions) lands in Milestone 16. See [`docs/PLAN.md`](docs/PLAN.md) for
