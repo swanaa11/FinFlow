@@ -1,0 +1,113 @@
+# ============================================================================
+# FinFlow merchant catalog — drives BOTH categorization (keywords) and the
+# synthetic data generator (amount ranges / relative frequency).
+#
+# keywords: uppercase substrings used to match normalized transaction
+#           descriptions. Merchant display names are Title Case.
+# gen_min / gen_max / weight: generation hints (rupees / relative frequency).
+# methods: plausible payment methods for this merchant.
+# ============================================================================
+
+version: 1
+
+categories:
+  - name: Income
+    merchants:
+      - {name: ACME Technologies Salary, keywords: [ACME TECHNOLOGIES, SALARY], gen_min: 95000, gen_max: 95000, weight: 0, methods: [netbanking]}
+      - {name: Stellar Consulting, keywords: [STELLAR CONSULTING], gen_min: 8000, gen_max: 22000, weight: 0, methods: [netbanking]}
+      - {name: Savings Interest, keywords: [SAVINGS INTEREST, INTEREST CR], gen_min: 800, gen_max: 2200, weight: 0, methods: [netbanking]}
+
+  - name: Transfers
+    merchants:
+      - {name: Own Account Transfer, keywords: [SELF TRANSFER, OWN TRANSFER, ADDED TO PAYTM], gen_min: 1000, gen_max: 20000, weight: 0, methods: [netbanking, upi]}
+      - {name: Credit Card Bill, keywords: [CREDIT CARD BILL, CARD PAYMENT], gen_min: 2000, gen_max: 60000, weight: 0, methods: [upi, netbanking]}
+
+  - name: Housing
+    merchants:
+      - {name: Kumar Realty Rent, keywords: [KUMAR REALTY, RENT], gen_min: 24000, gen_max: 24000, weight: 0, methods: [netbanking]}
+
+  - name: Food & Dining
+    merchants:
+      - {name: Swiggy, keywords: [SWIGGY], gen_min: 189, gen_max: 850, weight: 30, methods: [upi, card]}
+      - {name: Zomato, keywords: [ZOMATO], gen_min: 210, gen_max: 920, weight: 22, methods: [upi, card]}
+      - {name: Dominos Pizza, keywords: [DOMINOS, DOMINO'S], gen_min: 300, gen_max: 980, weight: 6, methods: [upi, card]}
+      - {name: Chai Point, keywords: [CHAI POINT], gen_min: 30, gen_max: 140, weight: 14, methods: [upi]}
+      - {name: Local Tea Stall, keywords: [TEA STALL, TAPRI], gen_min: 10, gen_max: 60, weight: 18, methods: [upi]}
+      - {name: Juice Corner, keywords: [JUICE CORNER], gen_min: 40, gen_max: 160, weight: 8, methods: [upi]}
+      - {name: Cafe Coffee Day, keywords: [CAFE COFFEE DAY, CCD], gen_min: 150, gen_max: 640, weight: 5, methods: [upi, card]}
+      - {name: Barbeque Nation, keywords: [BARBEQUE NATION], gen_min: 1400, gen_max: 2600, weight: 2, methods: [card]}
+      - {name: Hotel Krishna Bhoj, keywords: [KRISHNA BHOJ], gen_min: 220, gen_max: 780, weight: 7, methods: [upi]}
+
+  - name: Groceries
+    merchants:
+      - {name: BigBasket, keywords: [BIGBASKET], gen_min: 650, gen_max: 2400, weight: 12, methods: [card]}
+      - {name: Blinkit, keywords: [BLINKIT], gen_min: 180, gen_max: 1200, weight: 16, methods: [upi, card]}
+      - {name: Zepto, keywords: [ZEPTO], gen_min: 160, gen_max: 980, weight: 12, methods: [upi, card]}
+      - {name: D-Mart, keywords: [D-MART, DMART], gen_min: 800, gen_max: 3200, weight: 8, methods: [upi, card]}
+      - {name: Reliance Fresh, keywords: [RELIANCE FRESH, SMART BAZAR], gen_min: 300, gen_max: 1800, weight: 8, methods: [upi]}
+
+  - name: Transport
+    merchants:
+      - {name: Uber, keywords: [UBER], gen_min: 60, gen_max: 420, weight: 22, methods: [upi, card]}
+      - {name: Ola Cabs, keywords: [OLA CABS, OLA], gen_min: 70, gen_max: 380, weight: 14, methods: [upi, card]}
+      - {name: Rapido, keywords: [RAPIDO], gen_min: 35, gen_max: 160, weight: 12, methods: [upi]}
+      - {name: Metro Rail, keywords: [METRO RAIL, NMRC], gen_min: 20, gen_max: 90, weight: 8, methods: [upi]}
+
+  - name: Fuel
+    merchants:
+      - {name: Indian Oil, keywords: [INDIAN OIL, IOCL], gen_min: 1200, gen_max: 2600, weight: 8, methods: [card]}
+      - {name: HP Petrol Pump, keywords: [HP PETROL, HPCL], gen_min: 1100, gen_max: 2400, weight: 5, methods: [card]}
+      - {name: Shell Fuel, keywords: [SHELL], gen_min: 1500, gen_max: 2800, weight: 3, methods: [card]}
+
+  - name: Shopping
+    merchants:
+      - {name: Amazon, keywords: [AMAZON], gen_min: 350, gen_max: 6200, weight: 20, methods: [upi, card]}
+      - {name: Flipkart, keywords: [FLIPKART], gen_min: 400, gen_max: 5200, weight: 10, methods: [card]}
+      - {name: Myntra, keywords: [MYNTRA], gen_min: 700, gen_max: 3800, weight: 6, methods: [card]}
+      - {name: Ajio, keywords: [AJIO], gen_min: 600, gen_max: 2900, weight: 4, methods: [card]}
+      - {name: Croma, keywords: [CROMA], gen_min: 900, gen_max: 9500, weight: 3, methods: [card]}
+      - {name: Reliance Digital, keywords: [RELIANCE DIGITAL], gen_min: 800, gen_max: 8000, weight: 2, methods: [card]}
+
+  - name: Entertainment
+    merchants:
+      - {name: PVR Cinemas, keywords: [PVR CINEMAS, PVR LTD], gen_min: 280, gen_max: 1500, weight: 8, methods: [card]}
+      - {name: BookMyShow, keywords: [BOOKMYSHOW], gen_min: 220, gen_max: 1100, weight: 8, methods: [upi, card]}
+      - {name: Steam Games, keywords: [STEAM], gen_min: 200, gen_max: 1600, weight: 3, methods: [card]}
+      - {name: District by Zomato, keywords: [DISTRICT], gen_min: 200, gen_max: 900, weight: 3, methods: [upi]}
+
+  - name: Subscriptions
+    merchants:
+      - {name: Netflix, keywords: [NETFLIX], gen_min: 649, gen_max: 649, weight: 0, methods: [autopay, card]}
+      - {name: Spotify, keywords: [SPOTIFY], gen_min: 119, gen_max: 119, weight: 0, methods: [autopay, card]}
+      - {name: Amazon Prime, keywords: [AMAZON PRIME, PRIME VIDEO], gen_min: 299, gen_max: 299, weight: 0, methods: [autopay, card]}
+      - {name: Hotstar, keywords: [HOTSTAR, JIOTV], gen_min: 149, gen_max: 149, weight: 0, methods: [autopay]}
+
+  - name: Utilities
+    merchants:
+      - {name: MSEDCL Electricity, keywords: [MSEDCL, ELECTRICITY BILL], gen_min: 1150, gen_max: 2800, weight: 0, methods: [upi, netbanking]}
+      - {name: Airtel Postpaid, keywords: [AIRTEL], gen_min: 399, gen_max: 749, weight: 0, methods: [autopay, upi]}
+      - {name: Jio Recharge, keywords: [JIO], gen_min: 239, gen_max: 719, weight: 0, methods: [upi]}
+      - {name: ACT Fibernet, keywords: [ACT FIBERNET, BROADBAND], gen_min: 799, gen_max: 799, weight: 0, methods: [autopay, netbanking]}
+      - {name: LPG Gas Cylinder, keywords: [LPG, GAS CYLINDER, HP GAS], gen_min: 880, gen_max: 950, weight: 0, methods: [upi, netbanking]}
+
+  - name: Health
+    merchants:
+      - {name: Apollo Pharmacy, keywords: [APOLLO PHARMACY, APOLLO 247], gen_min: 150, gen_max: 1800, weight: 6, methods: [upi, card]}
+      - {name: PharmEasy, keywords: [PHARMEASY], gen_min: 250, gen_max: 1400, weight: 4, methods: [upi, card]}
+      - {name: City Care Clinic, keywords: [CITY CARE CLINIC], gen_min: 500, gen_max: 2200, weight: 2, methods: [upi]}
+      - {name: HDFC Ergo Insurance, keywords: [HDFC ERGO, INSURANCE PREMIUM], gen_min: 1850, gen_max: 1850, weight: 0, methods: [netbanking]}
+
+  - name: Personal Care
+    merchants:
+      - {name: Nykaa, keywords: [NYKAA], gen_min: 250, gen_max: 1600, weight: 6, methods: [card]}
+      - {name: Singhal Salon, keywords: [SALON], gen_min: 200, gen_max: 900, weight: 3, methods: [upi]}
+
+  - name: Education
+    merchants:
+      - {name: Coursera, keywords: [COURSERA], gen_min: 3999, gen_max: 3999, weight: 1, methods: [card]}
+      - {name: Udemy, keywords: [UDEMY], gen_min: 449, gen_max: 799, weight: 2, methods: [card]}
+      - {name: Book Depot, keywords: [BOOK DEPOT], gen_min: 300, gen_max: 1400, weight: 1, methods: [upi]}
+
+  - name: Fees & Charges
+    merchants:
+      - {name: Bank Charges, keywords: [CHRG-AMC, SMM CHRG, ATM CHRG, GST CHRG], gen_min: 25, gen_max: 130, weight: 0, methods: [netbanking]}

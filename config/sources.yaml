@@ -1,0 +1,76 @@
+# ============================================================================
+# FinFlow source registry — SINGLE SOURCE OF TRUTH for accounts & formats.
+#
+# Used by:
+#   * the synthetic data generator (writes files in exactly these formats)
+#   * the ingestion adapters (parse files back using these column maps)
+#
+# Adding a new bank = add an entry here + (if a new file_type appears) one
+# adapter class. No pipeline changes.
+# ============================================================================
+
+version: 1
+
+accounts:
+  - account_id: hdfc_savings
+    institution: HDFC Bank
+    display_name: HDFC Savings
+    account_type: savings
+    currency: INR
+    format:
+      file_type: csv
+      columns:
+        date: Date
+        description: Narration
+        withdrawal: Withdrawal
+        deposit: Deposit
+        balance: Balance
+      date_format: "%d/%m/%Y"
+      sign_convention: two_column          # Withdrawal (out) / Deposit (in), both positive
+
+  - account_id: icici_savings
+    institution: ICICI Bank
+    display_name: ICICI Savings
+    account_type: savings
+    currency: INR
+    format:
+      file_type: csv
+      columns:
+        date: Txn Date
+        description: Description
+        debit: Debit
+        credit: Credit
+        amount: Amount
+      date_format: "%d-%m-%Y"
+      sign_convention: two_column_with_net # Debit / Credit plus signed net Amount
+
+  - account_id: paytm_wallet
+    institution: Paytm
+    display_name: Paytm Wallet (UPI)
+    account_type: wallet
+    currency: INR
+    format:
+      file_type: xlsx
+      columns:
+        timestamp: Timestamp
+        description: Description
+        amount: Amount
+        type: Type
+        balance: Balance
+      date_format: "%Y-%m-%d %H:%M:%S"
+      sign_convention: signed_with_type    # signed Amount + Paid/Received Type
+
+  - account_id: axis_credit_card
+    institution: Axis Bank
+    display_name: Axis Credit Card
+    account_type: credit_card
+    currency: INR
+    format:
+      file_type: pdf
+      columns:
+        date: Date
+        description: Description
+        reference: Ref
+        amount: Amount
+      date_format: "%d/%m/%Y"
+      sign_convention: positive_spend      # spends positive, payments negative

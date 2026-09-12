@@ -1,0 +1,101 @@
+# ============================================================================
+# Synthetic data generator profile — the "digital twin" whose spending habits
+# feed the demo dataset. Deterministic for a fixed seed + period.
+#
+# All amounts are RUPEES. Streams of kind "probabilistic" fire with
+# P(prob_per_day) per day; "fixed" streams fire on day_of_month (+jitter).
+#
+# Dirt injection deliberately pollutes the corpus (duplicates, blanks, unknown
+# merchants, zero amounts, future dates, planted outliers) so the pipeline can
+# demonstrate validation, quarantine, dedup and anomaly detection end-to-end.
+# ============================================================================
+
+version: 1
+
+accounts:
+  hdfc_savings:
+    opening_balance: 150000
+    descriptor_style: hdfc
+  icici_savings:
+    opening_balance: 80000
+    descriptor_style: icici
+  paytm_wallet:
+    opening_balance: 4000
+    descriptor_style: wallet
+  axis_credit_card:
+    opening_balance: 0
+    descriptor_style: card
+
+streams:
+  # --- fixed monthly events -------------------------------------------------
+  - {stream: salary,           account: hdfc_savings,    category: Income,          kind: fixed, day_of_month: 1,  fixed_amount: 95000, method: netbanking, txn_type: income,     merchants: [ACME Technologies Salary]}
+  - {stream: rent,             account: hdfc_savings,    category: Housing,         kind: fixed, day_of_month: 3,  fixed_amount: 24000, method: netbanking, txn_type: purchase,   merchants: [Kumar Realty Rent]}
+  - {stream: broadband,        account: hdfc_savings,    category: Utilities,       kind: fixed, day_of_month: 5,  fixed_amount: 799,   method: autopay,    txn_type: autopay,    merchants: [ACT Fibernet]}
+  - {stream: electricity,      account: hdfc_savings,    category: Utilities,       kind: fixed, day_of_month: 12, jitter_days: 4, min_amount: 1150, max_amount: 2800, method: upi, txn_type: purchase, merchants: [MSEDCL Electricity]}
+  - {stream: insurance,        account: hdfc_savings,    category: Health,          kind: fixed, day_of_month: 10, fixed_amount: 1850, method: netbanking, txn_type: autopay,   merchants: [HDFC Ergo Insurance]}
+  - {stream: mobile_recharge,  account: icici_savings,   category: Utilities,       kind: fixed, day_of_month: 15, jitter_days: 2, min_amount: 239, max_amount: 719, method: upi, txn_type: purchase, merchants: [Jio Recharge]}
+  - {stream: netflix,          account: axis_credit_card, category: Subscriptions,  kind: fixed, day_of_month: 8,  fixed_amount: 649,   method: autopay,    txn_type: autopay,    merchants: [Netflix]}
+  - {stream: spotify,          account: axis_credit_card, category: Subscriptions,  kind: fixed, day_of_month: 18, fixed_amount: 119,   method: autopay,    txn_type: autopay,    merchants: [Spotify]}
+  - {stream: prime,            account: axis_credit_card, category: Subscriptions,  kind: fixed, day_of_month: 22, fixed_amount: 299,   method: autopay,    txn_type: autopay,    merchants: [Amazon Prime]}
+
+  # --- probabilistic daily spending ----------------------------------------
+  - {stream: upi_micro,        account: paytm_wallet,     category: Food & Dining,  prob_per_day: 1.7,  min_amount: 10,   max_amount: 120,   method: upi,  merchants: [Chai Point, Local Tea Stall, Juice Corner]}
+  - {stream: transport_wallet, account: paytm_wallet,     category: Transport,      prob_per_day: 0.75, min_amount: 35,   max_amount: 350,   method: upi,  merchants: [Uber, Ola Cabs, Rapido, Metro Rail]}
+  - {stream: food_delivery,    account: axis_credit_card, category: Food & Dining,  prob_per_day: 0.38, min_amount: 189,  max_amount: 950,   method: card, merchants: [Swiggy, Zomato, Dominos Pizza]}
+  - {stream: groceries_card,   account: axis_credit_card, category: Groceries,      prob_per_day: 0.18, min_amount: 180,  max_amount: 2400,  method: card, merchants: [BigBasket, Blinkit, Zepto]}
+  - {stream: groceries_upi,    account: hdfc_savings,     category: Groceries,      prob_per_day: 0.10, min_amount: 300,  max_amount: 2600,  method: upi,  merchants: [D-Mart, Reliance Fresh]}
+  - {stream: transport_card,   account: axis_credit_card, category: Transport,      prob_per_day: 0.22, min_amount: 60,   max_amount: 420,   method: card, merchants: [Uber, Ola Cabs]}
+  - {stream: fuel,             account: hdfc_savings,     category: Fuel,           prob_per_day: 0.09, min_amount: 1100, max_amount: 2600,  method: card, merchants: [Indian Oil, HP Petrol Pump, Shell Fuel]}
+  - {stream: shopping_small,   account: axis_credit_card, category: Shopping,       prob_per_day: 0.12, min_amount: 350,  max_amount: 4500,  method: card, merchants: [Amazon, Flipkart, Myntra, Ajio]}
+  - {stream: shopping_big,     account: axis_credit_card, category: Shopping,       prob_per_day: 0.022,min_amount: 5000, max_amount: 9500,  method: card, merchants: [Amazon, Croma, Reliance Digital]}
+  - {stream: entertainment,    account: axis_credit_card, category: Entertainment,  prob_per_day: 0.11, min_amount: 220,  max_amount: 1500,  method: card, merchants: [PVR Cinemas, BookMyShow, Steam Games]}
+  - {stream: dining_out,       account: hdfc_savings,     category: Food & Dining,  prob_per_day: 0.08, min_amount: 220,  max_amount: 2600,  method: upi,  merchants: [Barbeque Nation, Cafe Coffee Day, Hotel Krishna Bhoj]}
+  - {stream: health,           account: hdfc_savings,     category: Health,         prob_per_day: 0.05, min_amount: 150,  max_amount: 1800,  method: upi,  merchants: [Apollo Pharmacy, PharmEasy, City Care Clinic]}
+  - {stream: personal_care,    account: axis_credit_card, category: Personal Care,  prob_per_day: 0.05, min_amount: 200,  max_amount: 1600,  method: card, merchants: [Nykaa, Singhal Salon]}
+  - {stream: education,        account: icici_savings,    category: Education,      prob_per_day: 0.02, min_amount: 449,  max_amount: 3999,  method: card, merchants: [Coursera, Udemy, Book Depot]}
+
+  # --- semi-monthly / conditional -------------------------------------------
+  - {stream: freelance,        account: icici_savings,    category: Income,    per_month: 1.6,  min_amount: 8000,  max_amount: 22000, method: netbanking, txn_type: income, merchants: [Stellar Consulting]}
+  - {stream: own_transfer,     account: hdfc_savings,     category: Transfers, prob_per_day: 0.05, min_amount: 2000, max_amount: 10000, method: netbanking, txn_type: transfer, is_transfer: true, merchants: [Own Account Transfer]}
+  - {stream: gas_cylinder,     account: hdfc_savings,     category: Utilities, per_month: 0.9,  min_amount: 880,   max_amount: 950,   method: upi, txn_type: purchase, merchants: [LPG Gas Cylinder]}
+  - {stream: bank_charges,     account: icici_savings,    category: Fees & Charges, prob_per_day: 0.008, min_amount: 25, max_amount: 130, method: netbanking, txn_type: fee, merchants: [Bank Charges]}
+
+# Wallet maintenance: reload paytm from HDFC when it runs low (transfer).
+wallet_reload:
+  wallet_account: paytm_wallet
+  funding_account: hdfc_savings
+  trigger_below: 1500
+  reload_amount: 2000
+
+# Credit-card bill: HDFC pays the previous month's Axis spends on the 5th.
+card_payment:
+  card_account: axis_credit_card
+  payer_account: hdfc_savings
+  day_of_month: 5
+
+interest_credit:
+  account: hdfc_savings
+  months: [3, 6, 9, 12]   # quarter-end months
+  min_amount: 800
+  max_amount: 2200
+
+# --- dirt injection ---------------------------------------------------------
+dirt:
+  duplicate_row_rate: 0.015
+  blank_description_rate: 0.004
+  unknown_merchant_rate: 0.03
+  zero_amount_rows: 2        # corpus-wide
+  future_date_rows: 2        # corpus-wide
+  future_date_offset_days: 3
+
+# Planted outliers for anomaly-detection demos (days_back relative to period end)
+planted_anomalies:
+  - {account: axis_credit_card, category: Shopping,      merchant: Croma,        amount: 42500, days_back: 40, method: card}
+  - {account: hdfc_savings,     category: Food & Dining, merchant: Barbeque Nation, amount: 4600, days_back: 12, method: upi}
+  - {account: paytm_wallet,     category: Transport,     merchant: Uber,         amount: 1890,  days_back: 6,  method: upi}
+  - {account: axis_credit_card, category: Entertainment, merchant: BookMyShow,   amount: 2400,  days_back: 20, method: card}
+
+# Same-merchant same-amount charges on consecutive days (duplicate-charge demo)
+near_duplicates:
+  count: 3
+  min_amount: 300

@@ -1,0 +1,37 @@
+# --- Secrets (never commit) ---
+.env
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# --- Data: everything is generated/sensitive EXCEPT the committed synthetic sample ---
+data/*
+!data/sample/
+!data/.gitkeep
+
+# FinFlow runtime artifacts (created by the pipeline, never committed)
+*.duckdb
+*.duckdb.wal
+*.duckdb.tmp
+logs/
+backups/
+
+# dbt
+dbt/target/
+dbt/logs/
+dbt/finflow/profiles.yml   # contains only local paths, but keep env-specific copies out
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
