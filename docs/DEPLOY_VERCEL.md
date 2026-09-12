@@ -50,12 +50,18 @@ so the build saw `pyproject.toml` + Python sources and attempted a *Python
 serverless-function build*, scanning for a web entrypoint. FinFlow's pipeline
 is not a web app — this build path is simply wrong for it.
 
-**Fix (either works; A is cleanest):**
+**Fix — change the Framework Preset (this is the actual cause):**
 
-- **A. Point the project at `site`:** Project → **Settings → General →
-  Root Directory → Edit → `site`** → Save → **Deployments → ⋯ → Redeploy**.
-- **B. Do nothing:** pushes of the root `vercel.json` make Vercel treat the
-  deployment as static with `outputDirectory: site` automatically.
+The project's Framework Preset was auto-detected as **Python** (because
+`pyproject.toml` sits at the repo root). Dashboard settings **override**
+`vercel.json`, so the preset must be corrected in the UI:
+
+1. Project → **Settings → General → Framework Preset** → select **Other**
+2. While there: **Root Directory → Edit → `site`**; keep Build/Output/Install empty
+3. **Save** → **Deployments → ⋯ → Redeploy**
+
+The repo also sets `"framework": null` in `vercel.json`, so fresh imports
+never auto-detect Python in the first place.
 
 **Do NOT** add `[tool.vercel] entrypoint = "src.finflow.cli:app"` — that would
 try to serve the Typer CLI as a serverless function. FinFlow's architecture
