@@ -23,6 +23,8 @@ physically never be built from real statements.
 
 1. Go to **vercel.com → Add New… → Project**.
 2. Find **swanaa11/Wallet** in the repository list → **Import**.
+   > ⚠️ Import the **Wallet** repo specifically. (A separate `fin.flow` repo
+   > without the demo site will fail or deploy an empty page.)
 3. In **Configure Project**:
    - **Framework Preset:** `Other`
    - **Root Directory:** click **Edit** and select `site`
@@ -30,6 +32,34 @@ physically never be built from real statements.
      (the site is pre-built static HTML with zero dependencies)
 4. Click **Deploy**. You get a live URL like `https://wallet-xxxx.vercel.app`.
 5. Every future push to `main` **auto-redeploys** — no extra CI needed.
+
+The repo also carries a **root `vercel.json`** (`outputDirectory: "site"`), so
+even if you skip step 3 and import at the repo root, Vercel serves `site/`
+statically instead of trying to build a Python function.
+
+## Troubleshooting: "No python entrypoint found …"
+
+```text
+Error: No python entrypoint found in default locations, but found potential
+entrypoints: src/finflow/cli.py (variable: app)
+Add this to your pyproject.toml: [tool.vercel] entrypoint = ...
+```
+
+**Cause:** the Vercel project was imported with **Root Directory = repo root**,
+so the build saw `pyproject.toml` + Python sources and attempted a *Python
+serverless-function build*, scanning for a web entrypoint. FinFlow's pipeline
+is not a web app — this build path is simply wrong for it.
+
+**Fix (either works; A is cleanest):**
+
+- **A. Point the project at `site`:** Project → **Settings → General →
+  Root Directory → Edit → `site`** → Save → **Deployments → ⋯ → Redeploy**.
+- **B. Do nothing:** pushes of the root `vercel.json` make Vercel treat the
+  deployment as static with `outputDirectory: site` automatically.
+
+**Do NOT** add `[tool.vercel] entrypoint = "src.finflow.cli:app"` — that would
+try to serve the Typer CLI as a serverless function. FinFlow's architecture
+(ADR-0008) keeps the pipeline local; only the static demo belongs on Vercel.
 
 ## Method B — CLI
 
