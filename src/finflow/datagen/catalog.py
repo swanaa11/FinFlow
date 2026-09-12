@@ -45,7 +45,7 @@ class SourcesConfig(BaseModel):
         raise KeyError(f"Unknown account_id: {account_id!r}")
 
     @classmethod
-    def load(cls, path: Path | None = None) -> "SourcesConfig":
+    def load(cls, path: Path | None = None) -> SourcesConfig:
         p = path or (get_settings().config_dir / "sources.yaml")
         return cls.model_validate(_read_yaml(p))
 
@@ -86,7 +86,7 @@ class Catalog(BaseModel):
         raise KeyError(f"Unknown merchant (no category): {merchant_name!r}")
 
     @classmethod
-    def load(cls, path: Path | None = None) -> "Catalog":
+    def load(cls, path: Path | None = None) -> Catalog:
         p = path or (get_settings().config_dir / "categories.yaml")
         return cls.model_validate(_read_yaml(p))
 
@@ -170,7 +170,7 @@ class GenProfile(BaseModel):
         return self.accounts[account_id]
 
     @classmethod
-    def load(cls, path: Path | None = None) -> "GenProfile":
+    def load(cls, path: Path | None = None) -> GenProfile:
         p = path or (get_settings().config_dir / "datagen.yaml")
         return cls.model_validate(_read_yaml(p))
 

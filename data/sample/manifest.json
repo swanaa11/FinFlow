@@ -1,0 +1,387 @@
+{
+  "generator": "finflow-datagen",
+  "synthetic": true,
+  "seed": 42,
+  "generated_at": "2026-09-12T16:31:09",
+  "period": {
+    "start": "2025-09-01",
+    "end": "2026-08-31"
+  },
+  "row_count": 1709,
+  "rows_per_account": {
+    "axis_credit_card": 445,
+    "hdfc_savings": 291,
+    "icici_savings": 42,
+    "paytm_wallet": 931
+  },
+  "rows_per_category": {
+    "Education": 5,
+    "Entertainment": 41,
+    "Fees & Charges": 3,
+    "Food & Dining": 746,
+    "Fuel": 37,
+    "Groceries": 112,
+    "Health": 32,
+    "Housing": 12,
+    "Income": 31,
+    "Personal Care": 20,
+    "Shopping": 45,
+    "Subscriptions": 37,
+    "Transfers": 139,
+    "Transport": 341,
+    "Uncategorized": 62,
+    "Utilities": 46
+  },
+  "files": [
+    {
+      "path": "hdfc_savings/hdfc_savings_2025-09.csv",
+      "account": "hdfc_savings",
+      "month": "2025-09",
+      "rows": 23,
+      "sha256": "ba15a7c9e6fbc2dd76080f18061990f7efdf7b3c6fb2f27b821754a84b1ec89d"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2025-10.csv",
+      "account": "hdfc_savings",
+      "month": "2025-10",
+      "rows": 17,
+      "sha256": "6731a86e5ab886b6c71836666eef023b66249d3debfc4fa9ce721984cfa5405d"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2025-11.csv",
+      "account": "hdfc_savings",
+      "month": "2025-11",
+      "rows": 29,
+      "sha256": "1c1ba5205519e6e03d9ff59eaacd3b46927c978f67616839c8d138a74aa57373"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2025-12.csv",
+      "account": "hdfc_savings",
+      "month": "2025-12",
+      "rows": 26,
+      "sha256": "7016edda6872731c65d2842f967d1b64643a8cee2573f58243af0c4f9a7f7efb"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-01.csv",
+      "account": "hdfc_savings",
+      "month": "2026-01",
+      "rows": 27,
+      "sha256": "6334b58af3c03ed4baa6ad108153678f8185e4a3859672da6a6331136816c0d7"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-02.csv",
+      "account": "hdfc_savings",
+      "month": "2026-02",
+      "rows": 25,
+      "sha256": "391db7b961a62caf73ccdf39074eb7d6e70d7d77b06f2f8030ffe48b9d5afc03"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-03.csv",
+      "account": "hdfc_savings",
+      "month": "2026-03",
+      "rows": 21,
+      "sha256": "a1fe3b6320c47ef5a45d7a7cf978ea7eb3da912e5eb8fa623008c79739504952"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-04.csv",
+      "account": "hdfc_savings",
+      "month": "2026-04",
+      "rows": 27,
+      "sha256": "a06e9ec5a2c2b4845bbe1eb142765dd66d09af9815abbb797f00540dee37f5d2"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-05.csv",
+      "account": "hdfc_savings",
+      "month": "2026-05",
+      "rows": 26,
+      "sha256": "b443814ddc419984f1e674c9a7cb0b7916b307b60b2320a4d3ac0e16c1e33f92"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-06.csv",
+      "account": "hdfc_savings",
+      "month": "2026-06",
+      "rows": 20,
+      "sha256": "8c1fbc86fe6d172b9d09d066786dc217fdd9712e1933ecb38c4fc1f6310ac977"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-07.csv",
+      "account": "hdfc_savings",
+      "month": "2026-07",
+      "rows": 25,
+      "sha256": "cd101a34ea1bb1ac4820b62efdcbedfa699fac4f0879b667dd7ad06445c8adc1"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-08.csv",
+      "account": "hdfc_savings",
+      "month": "2026-08",
+      "rows": 24,
+      "sha256": "f6f08d2ad5ac5f8d8cba2cc1e37b740b7f97cc6bbe8baee5fc446a4e43fa7090"
+    },
+    {
+      "path": "hdfc_savings/hdfc_savings_2026-09.csv",
+      "account": "hdfc_savings",
+      "month": "2026-09",
+      "rows": 1,
+      "sha256": "cf97cca39825d7231ed2cd3263806695511e19cb6c916d394b9a9c43da441725"
+    },
+    {
+      "path": "icici_savings/icici_savings_2025-09.csv",
+      "account": "icici_savings",
+      "month": "2025-09",
+      "rows": 2,
+      "sha256": "515c8c9f071d6fbda9a94360ff154ef79a8f9b002fce886d4aa5db7284169a72"
+    },
+    {
+      "path": "icici_savings/icici_savings_2025-10.csv",
+      "account": "icici_savings",
+      "month": "2025-10",
+      "rows": 4,
+      "sha256": "4cd515711e68cea8b825a57f89dcbeccf8bb404cfec73909539e96855f336dac"
+    },
+    {
+      "path": "icici_savings/icici_savings_2025-11.csv",
+      "account": "icici_savings",
+      "month": "2025-11",
+      "rows": 5,
+      "sha256": "cae403eaa36c631bf1fe2aa89733a1961f197d52115bdd07c111091c0af1301c"
+    },
+    {
+      "path": "icici_savings/icici_savings_2025-12.csv",
+      "account": "icici_savings",
+      "month": "2025-12",
+      "rows": 4,
+      "sha256": "72b5858ed596b7eb13cb320dd9faf6f86ca62ed5a7e7f14667ed81e54a3ffa31"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-01.csv",
+      "account": "icici_savings",
+      "month": "2026-01",
+      "rows": 7,
+      "sha256": "196afd04b0704e97999461c97df1edddca08070d2ecf76ec3d3b9aea268b110b"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-02.csv",
+      "account": "icici_savings",
+      "month": "2026-02",
+      "rows": 2,
+      "sha256": "13c3e2532a24c7cb0edad38e6fb58df03d4ee58f26859204df7ff421e22b2506"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-03.csv",
+      "account": "icici_savings",
+      "month": "2026-03",
+      "rows": 2,
+      "sha256": "e2f67093701d145193854875f6393cb9d2e0e1f822724dd826c892d6356d6c57"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-04.csv",
+      "account": "icici_savings",
+      "month": "2026-04",
+      "rows": 3,
+      "sha256": "668699c6f1052a5109b231adeb23eabb7308bb9317e5bac1ef292541a02d9091"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-05.csv",
+      "account": "icici_savings",
+      "month": "2026-05",
+      "rows": 2,
+      "sha256": "f84aa0e14216f05c4287041ff13c1899ce74d12717945fa72180d97f1579c77b"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-06.csv",
+      "account": "icici_savings",
+      "month": "2026-06",
+      "rows": 5,
+      "sha256": "8daa1d3f4295b4d843fdf76f0d1004e472f544f506a6d59121903189fa2812e5"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-07.csv",
+      "account": "icici_savings",
+      "month": "2026-07",
+      "rows": 3,
+      "sha256": "6e6db2f0fc46020db7c5de14d41e1477156149a4e6cb31b33f197485e4743858"
+    },
+    {
+      "path": "icici_savings/icici_savings_2026-08.csv",
+      "account": "icici_savings",
+      "month": "2026-08",
+      "rows": 3,
+      "sha256": "958d9fc955e037b6d07ad2c624e6d4a8129db34e5e575fbb9348d121e6160267"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2025-09.xlsx",
+      "account": "paytm_wallet",
+      "month": "2025-09",
+      "rows": 79,
+      "sha256": "77cf267d983fb9a464ff35f7f2c9044d83e6fcf6789751e7e7c753f35bab0db2"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2025-10.xlsx",
+      "account": "paytm_wallet",
+      "month": "2025-10",
+      "rows": 80,
+      "sha256": "6eb489f05e256ae34f9e20b87998a218a83eeb8d227f90d3127871c87aecd365"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2025-11.xlsx",
+      "account": "paytm_wallet",
+      "month": "2025-11",
+      "rows": 75,
+      "sha256": "f5f0ec9310c9e34e3e7018489051e074eadf02810da4c6825edf0fa67b52759b"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2025-12.xlsx",
+      "account": "paytm_wallet",
+      "month": "2025-12",
+      "rows": 79,
+      "sha256": "352fcab6453050d150d2063d072669e45fef9657c2bf35eda4469b12e0b70993"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-01.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-01",
+      "rows": 78,
+      "sha256": "3cbec3d1a5b656e113d79aea580c9e2b7d578519c73c7a1e1c44a091f49872ed"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-02.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-02",
+      "rows": 70,
+      "sha256": "38cf384c29da19f35db0da5b2d91cb282f8c0dbb621adbd75350df644cbf859d"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-03.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-03",
+      "rows": 83,
+      "sha256": "00a7e7a101e2e08fe46ef0892be019b8c44ac53fc732f478abeaf1acd869dd76"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-04.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-04",
+      "rows": 70,
+      "sha256": "99e4c6d4eafdce45e8a81376e03b855c00716fa61894506988fda8ada1a249c6"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-05.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-05",
+      "rows": 75,
+      "sha256": "30c093bc2d12617fe3ab51b47bc7beda55a883e3d1a94633c69587f7f604d411"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-06.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-06",
+      "rows": 74,
+      "sha256": "5954fa6a71ac1023d7f15142c3087691e71cc2336be685cb6140610bbe6821b1"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-07.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-07",
+      "rows": 76,
+      "sha256": "fac4cb45dd370a5a9b9bdaf26368d2b129599be3f0869c074b4630994829d03f"
+    },
+    {
+      "path": "paytm_wallet/paytm_wallet_2026-08.xlsx",
+      "account": "paytm_wallet",
+      "month": "2026-08",
+      "rows": 92,
+      "sha256": "5b38ee0f608886c4c3cab98dab809facae21f23dad279c810e48bbe305dab92d"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2025-09.pdf",
+      "account": "axis_credit_card",
+      "month": "2025-09",
+      "rows": 36,
+      "sha256": "5c28d0c4242ffce67b9d3c69f018cbcc838a4161a6889f492d5065e927be1095"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2025-10.pdf",
+      "account": "axis_credit_card",
+      "month": "2025-10",
+      "rows": 37,
+      "sha256": "f5a787065f977fd586d56756f832828943ad98aecff3862a5cc20555abe6137d"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2025-11.pdf",
+      "account": "axis_credit_card",
+      "month": "2025-11",
+      "rows": 38,
+      "sha256": "831fa66a9eb7adb8e2bc1b7b74f7d5de52f10cee046c0b39623f9590556533af"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2025-12.pdf",
+      "account": "axis_credit_card",
+      "month": "2025-12",
+      "rows": 35,
+      "sha256": "1083eecb2d1415a538918c0f8b6523494f8e36aa075d53541704d57fcf9d98fb"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-01.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-01",
+      "rows": 45,
+      "sha256": "872777e402c2aa71f89073f605686235dcc7e161aa14c69ea72e1b2742be256a"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-02.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-02",
+      "rows": 32,
+      "sha256": "adc6c44cf0b336e8eb3daf75287a88e3eeeeb1ed566358a41683d53cfa118a8f"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-03.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-03",
+      "rows": 35,
+      "sha256": "d4b4585d43d7f67ea99ef34d9705854950877cff8b1ce1f6921a9f94f9a8d687"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-04.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-04",
+      "rows": 39,
+      "sha256": "69f02cf8eef06c5f9c9ac86d31b3bc89951d6fd48bafa8e10fd46011e555317b"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-05.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-05",
+      "rows": 40,
+      "sha256": "4b80b70b1f0b78f1e8431026449565bf659f3231316ac1da295309f3c50f0ae7"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-06.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-06",
+      "rows": 36,
+      "sha256": "c3537493a318bb34512f3e1c71a335f079dafc24c7cc2b7493e15807813435a0"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-07.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-07",
+      "rows": 37,
+      "sha256": "860ec544d3cdafc0569c81317492800131c1f971f91e3dc1565b935d6aaae3b0"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-08.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-08",
+      "rows": 34,
+      "sha256": "d99fadfe9e1c87cab43976c90f457799f1f413532cd1d519b873bcc1f845875a"
+    },
+    {
+      "path": "axis_credit_card/axis_credit_card_2026-09.pdf",
+      "account": "axis_credit_card",
+      "month": "2026-09",
+      "rows": 1,
+      "sha256": "99bdae307d60201c643d80433223ff3f012e559ad1ecdeaf383856b11ebb69fb"
+    }
+  ]
+}

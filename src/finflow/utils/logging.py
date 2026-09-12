@@ -14,7 +14,7 @@ import json
 import logging
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Shapes of common credentials, redacted wherever they appear in a message.
@@ -46,7 +46,7 @@ class JsonFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         payload = {
-            "ts": datetime.now(timezone.utc).isoformat(timespec="milliseconds"),
+            "ts": datetime.now(UTC).isoformat(timespec="milliseconds"),
             "level": record.levelname,
             "logger": record.name,
             "msg": sanitize(record.getMessage(), self._extra_secrets),
